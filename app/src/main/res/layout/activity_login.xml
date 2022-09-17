@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="#94FFF5"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Entrar"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="50dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/loginemail"
+        android:hint="Email"
+        android:textSize="25dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:background="@drawable/edittextbackground"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/loginsenha"
+        android:hint="Senha"
+        android:textSize="25dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:background="@drawable/edittextbackground"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="20dp"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/btnlogin"
+        android:text="Entrar"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:layout_marginBottom="30dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/btnvoltarcadastro"
+        android:text="Não tenho uma conta"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:backgroundTint="@color/black"
+        android:layout_marginBottom="30dp"/>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/mainLayout">
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tripid_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Viagem 1"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-thin"/>
+
+                <TextView
+                    android:id="@+id/tripdist_row"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Distancia"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-thin"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/tripspeed_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="120Km/h"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-thin" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/triptime_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="1:20 Horas"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
