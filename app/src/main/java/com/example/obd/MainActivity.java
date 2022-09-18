@@ -215,6 +215,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
     public void lersensor(){
+        log.info("lendo sensor");
+
         try {
             List<String> deviceStrs = new ArrayList<String>();
             List<String> devices = new ArrayList<String>();

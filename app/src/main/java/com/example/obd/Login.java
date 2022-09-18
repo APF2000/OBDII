@@ -36,44 +36,47 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_login);
-
-        email = findViewById(R.id.loginemail);
-        senha = findViewById(R.id.loginsenha);
-
-        logar = findViewById(R.id.btnlogin);
-        cad = findViewById(R.id.btnvoltarcadastro);
-
-        db = new DataBaseHelper(this);
-
-        logar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = email.getText().toString();
-                String pass = senha.getText().toString();
-
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (inputManager != null) {
-                    inputManager.hideSoftInputFromWindow(view.getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-                }
-
-                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
-                    Toast.makeText(Login.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
-                } else {
-                    new LoginData().execute(user, pass);
-                }
-            }
-        });
-
-        cad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Login.this, Register.class);
-                startActivity(i);
-            }
-        });
+//
+//        email = findViewById(R.id.loginemail);
+//        senha = findViewById(R.id.loginsenha);
+//
+//        logar = findViewById(R.id.btnlogin);
+//        cad = findViewById(R.id.btnvoltarcadastro);
+//
+//        db = new DataBaseHelper(this);
+//
+//        logar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String user = email.getText().toString();
+//                String pass = senha.getText().toString();
+//
+//                InputMethodManager inputManager = (InputMethodManager)
+//                        getSystemService(Context.INPUT_METHOD_SERVICE);
+//                if (inputManager != null) {
+//                    inputManager.hideSoftInputFromWindow(view.getWindowToken(),
+//                            InputMethodManager.HIDE_NOT_ALWAYS);
+//                }
+//
+//                log.info("onclick");
+//                // ignore login, for testing purposes
+////                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
+////                    Toast.makeText(Login.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+////                } else {
+//                    new LoginData().execute(user, pass);
+////                }
+//            }
+//        });
+//
+//        cad.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(Login.this, Register.class);
+//                startActivity(i);
+//            }
+//        });
 
         setBluetoothEnable(true);
     }
@@ -116,15 +119,16 @@ public class Login extends AppCompatActivity {
 
                 URL url = new URL(link);
 
-                URLConnection connection = url.openConnection();
-                connection.setDoOutput(true);
+                // temporarily remove, because there is no external server for now
+//                URLConnection connection = url.openConnection();
+//                connection.setDoOutput(true);
 
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(data);
-                writer.flush();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+//                writer.write(data);
+//                writer.flush();
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-                return reader.readLine();
+                return "nothing";//reader.readLine();
 
             }catch (Exception e){
                 e.printStackTrace();

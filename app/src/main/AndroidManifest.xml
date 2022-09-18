@@ -33,11 +33,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Obd">
         <activity android:name=".Register"></activity>
-        <activity android:name=".MainActivity" />
+<!--        <activity android:name=".MainActivity" />-->
         <activity android:name=".DisplayTrip" />
         <activity android:name=".Score" />
         <activity
-            android:name=".Login"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +45,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity-->
+<!--            android:name=".Login"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>
