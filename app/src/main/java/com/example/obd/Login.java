@@ -22,8 +22,11 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.logging.Logger;
 
 public class Login extends AppCompatActivity {
+
+    Logger log = Logger.getLogger("general");
 
     EditText email, senha;
     Button logar, cad;
@@ -78,14 +81,20 @@ public class Login extends AppCompatActivity {
     public void setBluetoothEnable(Boolean enable) {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(mBluetoothAdapter != null){
-            if (enable) {
-                if (!mBluetoothAdapter.isEnabled()) {
-                    mBluetoothAdapter.enable();
+            try {
+                if (enable) {
+                    if (!mBluetoothAdapter.isEnabled()) {
+                        mBluetoothAdapter.enable();
+                    }
+                } else {
+                    if (mBluetoothAdapter.isEnabled()) {
+                        mBluetoothAdapter.disable();
+                    }
                 }
-            } else {
-                if (mBluetoothAdapter.isEnabled()) {
-                    mBluetoothAdapter.disable();
-                }
+            }
+            catch (SecurityException se)
+            {
+                log.warning("Security exception");
             }
         }
     }

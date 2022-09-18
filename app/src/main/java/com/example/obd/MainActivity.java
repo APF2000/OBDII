@@ -80,6 +80,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import pl.pawelkleczkowski.customgauge.CustomGauge;
 
@@ -87,6 +88,8 @@ import static com.sohrab.obd.reader.constants.DefineObdReader.ACTION_CONNECTION_
 import static com.sohrab.obd.reader.constants.DefineObdReader.ACTION_READ_OBD_REAL_TIME_DATA;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    Logger log = Logger.getLogger("general");
 
     private static final int BLUETOOTH_PERMISSION_CODE = 1;
 
@@ -216,13 +219,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             List<String> deviceStrs = new ArrayList<String>();
             List<String> devices = new ArrayList<String>();
 
-            Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
-            if (pairedDevices.size() > 0) {
-                for (BluetoothDevice device : pairedDevices) {
-                    deviceStrs.add(device.getName() + "\n" + device.getAddress());
-                    devices.add(device.getAddress());
+            try{
+                Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
+                if (pairedDevices.size() > 0) {
+                    for (BluetoothDevice device : pairedDevices) {
+                        deviceStrs.add(device.getName() + "\n" + device.getAddress());
+                        devices.add(device.getAddress());
+                    }
                 }
+            }catch(SecurityException se){
+                log.warning("Security exception");
             }
+
 
             // show list
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
@@ -335,8 +343,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             mReadThread = new ReadInput();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch(SecurityException se){
+            log.warning("Security exception");
+            se.printStackTrace();
         }
-
     }
     class ListTrip extends AsyncTask<String, Void, String> {
 
@@ -416,6 +426,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             socket.connect();
         } catch (IOException e) {
             e.printStackTrace();
+        }catch(SecurityException se){
+            log.warning("Security exception");
+            se.printStackTrace();
         }
         /* Se o bluetooth estiver ligado, ele inicia um timer que funciona infinitamente
 
