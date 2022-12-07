@@ -423,14 +423,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-        try {
-            socket = device.createInsecureRfcommSocketToServiceRecord(uuid);
-            socket.connect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }catch(SecurityException se){
-            log.warning("Security exception");
-            se.printStackTrace();
+        if(socket == null) {
+            try {
+                socket = device.createInsecureRfcommSocketToServiceRecord(uuid);
+                socket.connect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SecurityException se) {
+                log.warning("Security exception");
+                se.printStackTrace();
+            }
         }
         /* Se o bluetooth estiver ligado, ele inicia um timer que funciona infinitamente
 
