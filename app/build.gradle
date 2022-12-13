@@ -6,6 +6,12 @@ android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked"
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.obd"
         minSdkVersion 19
@@ -14,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {

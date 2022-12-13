@@ -41,10 +41,10 @@ public class DisplayTrip extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
-        ArrayList<Trip> trips = (ArrayList<Trip>) args.getSerializable("ARRAYLIST");
+        //ArrayList<Trip> trips = (ArrayList<Trip>) args.getSerializable("ARRAYLIST");
         //new ListTrip().execute(email);
 
-        customAdapter = new CustomAdapter(DisplayTrip.this, trips, recyclerView, DisplayTrip.this);
+        //customAdapter = new CustomAdapter(DisplayTrip.this, trips, recyclerView, DisplayTrip.this);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(DisplayTrip.this);

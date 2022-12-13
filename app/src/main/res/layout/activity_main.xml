@@ -8,6 +8,15 @@
     android:id="@+id/LayoutArroz"
     android:orientation="vertical">
 
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/textClock"
+        android:layout_weight="0.11"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
+<!--        android:format24hours="hh:mm:ss a  EEE MMM d"/>-->
+
     <TextView
         android:id="@+id/tv_obd_info"
         android:layout_width="wrap_content"

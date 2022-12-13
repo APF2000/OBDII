@@ -36,6 +36,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -131,6 +132,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        TextClock textClock = (TextClock) findViewById(R.id.textClock);
+        textClock.setFormat12Hour(null);
+        //textClock.setFormat24Hour("dd/MM/yyyy hh:mm:ss a");
+        textClock.setFormat24Hour("hh:mm:ss a  EEE MMM d");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -278,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         @Override
         public void run() {
+            log.info("Running ReadInput runnable");
             InputStream inputStream;
 
             try {
@@ -419,6 +426,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }catch(Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    class GetOBDParameters extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings){
+
+
+            return "";
         }
     }
 
