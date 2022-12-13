@@ -86,10 +86,12 @@ import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 import static com.sohrab.obd.reader.constants.DefineObdReader.ACTION_CONNECTION_STATUS_MSG;
 import static com.sohrab.obd.reader.constants.DefineObdReader.ACTION_READ_OBD_REAL_TIME_DATA;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    Logger log = Logger.getLogger("general");
+    Logger log = Logger.getLogger("general.main");
 
     private static final int BLUETOOTH_PERMISSION_CODE = 1;
 
@@ -228,6 +230,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         deviceStrs.add(device.getName() + "\n" + device.getAddress());
                         devices.add(device.getAddress());
                     }
+                }else{
+                    log.warning("No bluetooth devices available!!");
+                    return;
                 }
             }catch(SecurityException se){
                 log.warning("Security exception");
@@ -299,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
+                                    log.info("Mudando cor de fundo");
                                     linearLayout.setBackgroundColor(Color.RED);
                                     Toast.makeText(MainActivity.this, "Cuidado! " + "\n" + "Objeto próximo ao carro", Toast.LENGTH_SHORT).show();
                                 }
@@ -307,6 +313,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
+
+                                    log.info("Setting background color black");
                                     linearLayout.setBackgroundColor(Color.BLACK);
                                 }
                             });
@@ -457,11 +465,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         new SelectProtocolCommand(ObdProtocols.AUTO).run(socket.getInputStream(), socket.getOutputStream());
                         //Thread.sleep(400);
                     } catch (IOException | InterruptedException e) {
+                        log.warning("Exception: " + e.toString());
                         //ligado = false;
                         Thread.currentThread().interrupt();
                         new Handler(Looper.getMainLooper()).post(() -> {
+                            log.info("OBD desconectado");
                             Toast.makeText(getApplicationContext(), "OBD desconectado!" + "\n" + "Conexão Encerrada!", Toast.LENGTH_SHORT).show();
-                            concluirViagem();
+                            //concluirViagem();
                             finish();
                         });
 
@@ -512,7 +522,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                mSpeedTextView.setText(speedCommand.getCalculatedResult() + " Km/h");
+                                log.info("Setting speed text!!");
+                                mSpeedTextView.setText("321 Km/h");
+                                //mSpeedTextView.setText(speedCommand.getCalculatedResult() + " Km/h");
                                 mRpmTextView.setText(engineRpmCommand.getCalculatedResult() + " RPM");
                                 //mObdInfoTextView.setText(String.valueOf(dec));
                                 gaugespeed.setSpeed(speed,false);
@@ -538,6 +550,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
+                    log.info("Concluindo viagem");
                     Toast.makeText(MainActivity.this, "Viagem encerrada!", Toast.LENGTH_SHORT).show();
                     //btAdapter.disable();
                     finish();
@@ -805,6 +818,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         super.onResume();
         sensorManager.registerListener(this, acelera, SensorManager.SENSOR_DELAY_UI);
+
+        log.info("Resuming main activity");
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        mSpeedTextView.setText(currentTime.toString() + " Km/h");
+        mSpeedTextView.setText("444 Km/h");
     }
 
     @Override
