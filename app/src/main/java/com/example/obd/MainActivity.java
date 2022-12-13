@@ -821,6 +821,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         log.info("Resuming main activity");
 
+
 //        Date currentTime = Calendar.getInstance().getTime();
 //        mSpeedTextView.setText(currentTime.toString() + " Km/h");
         mSpeedTextView.setText("444 Km/h");
