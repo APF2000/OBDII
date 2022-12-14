@@ -59,45 +59,44 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="218dp"
         android:orientation="vertical">
 
         <com.jignesh13.speedometer.SpeedoMeterView
             android:id="@+id/gaugespeed"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.453"
             app:layout_constraintStart_toStartOf="parent"
-            app:needlecolor="@color/white"
-            app:removeborder="false"
-            app:linecolor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.079"
-            android:layout_centerHorizontal="true"
-            />
+            app:linecolor="@color/white"
+            app:needlecolor="@color/white"
+            app:removeborder="false" />
 
         <pl.pawelkleczkowski.customgauge.CustomGauge
             android:id="@+id/gaugerpm"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:paddingBottom="20dp"
+            android:layout_below="@id/gaugespeed"
+            android:layout_centerHorizontal="true"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:paddingTop="20dp"
-            app:gaugePointStartColor="#FF0000"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            app:gaugeEndValue="8000"
             app:gaugePointEndColor="#FF0000"
             app:gaugePointSize="10"
+            app:gaugePointStartColor="#FF0000"
             app:gaugeStartAngle="135"
+            app:gaugeStartValue="0"
             app:gaugeStrokeCap="ROUND"
             app:gaugeStrokeColor="@color/white"
             app:gaugeStrokeWidth="10dp"
-            app:gaugeStartValue="0"
-            app:gaugeEndValue="8000"
-            app:gaugeSweepAngle="270"
-            android:layout_below="@id/gaugespeed"
-            android:layout_centerHorizontal="true"/>
+            app:gaugeSweepAngle="270" />
 
         <TextView
             android:id="@+id/txtrpm"
@@ -109,6 +108,17 @@
 
     </RelativeLayout>
 
+
+    <Button
+        android:id="@+id/btnsensor"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/white"
+        android:text="Pegar informações do leitor"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,39 +128,39 @@
         android:rowCount="2">
 
         <androidx.cardview.widget.CardView
-        android:id="@+id/cardHistorico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        android:layout_row="0"
-        android:layout_column="0"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="12dp"
-        app:cardUseCompatPadding="true"
-        android:clickable="true"
-        android:focusable="true">
-
-            <LinearLayout
+            android:id="@+id/cardHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="12dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_historico"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_historico" />
 
                 <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Histórico"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Histórico"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -197,17 +207,6 @@
     </androidx.cardview.widget.CardView>
 
     </GridLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/btnsensor"
-        android:text="Conectar ao sensor de proximidade"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:layout_marginBottom="30dp"/>
-
 
 
 

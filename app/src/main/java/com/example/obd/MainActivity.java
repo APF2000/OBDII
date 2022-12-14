@@ -166,6 +166,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         btnsensor.setOnClickListener(v -> {
             lersensor();
+
+            Date currentTime = Calendar.getInstance().getTime();
+            mSpeedTextView.setText(currentTime.toString());
         });
 
         cardPont.setOnClickListener(v -> {
@@ -823,7 +826,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 //        Date currentTime = Calendar.getInstance().getTime();
 //        mSpeedTextView.setText(currentTime.toString() + " Km/h");
-        mSpeedTextView.setText("444 Km/h");
+       // mSpeedTextView.setText("444 Km/h");
     }
 
     @Override
