@@ -166,6 +166,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         btnsensor.setOnClickListener(v -> {
             lersensor();
+            /** Mais metodos da biblioteca **/
+//            RPMCommand engineRpmCommand = new RPMCommand();
+//            //Thread.sleep(200);
+//            SpeedCommand speedCommand = new SpeedCommand();
+//            //speedmax = speed;
+//            //Thread.sleep(200);
+//            try {
+//                engineRpmCommand.run(socket.getInputStream(), socket.getOutputStream());
+//                //Thread.sleep(200);
+//                speedCommand.run(socket.getInputStream(), socket.getOutputStream());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            speed = Integer.parseInt(speedCommand.getCalculatedResult());
+//            rpm = Integer.parseInt(engineRpmCommand.getCalculatedResult());
+//
+//            //mSpeedTextView.setText("321 Km/h");
+//            mSpeedTextView.setText(speedCommand.getCalculatedResult() + " Km/h");
+//            mRpmTextView.setText(engineRpmCommand.getCalculatedResult() + " RPM");
+//            //mObdInfoTextView.setText(String.valueOf(dec));
+//            gaugespeed.setSpeed(speed,false);
+//            gaugerpm.setValue(rpm);
+
+            /////////////////////////
 
             Date currentTime = Calendar.getInstance().getTime();
             mSpeedTextView.setText(currentTime.toString());
