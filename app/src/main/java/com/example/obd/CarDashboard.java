@@ -43,6 +43,8 @@ public class CarDashboard extends AppCompatActivity {
     BluetoothSocket mBTSocket = null;
     MainActivity.ReadInput mReadThread = null;
 
+    String deviceAddress = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class CarDashboard extends AppCompatActivity {
         });
     }
 
-    public void batata2() {
+    public void batata2(View v) {
         /*Aqui ele lista os dispositivos pareados e que estão disponiveis*/
         try {
             List<String> deviceStrs = new ArrayList<String>();
@@ -104,6 +106,7 @@ public class CarDashboard extends AppCompatActivity {
                     dialog.dismiss();
                     int position = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                     String deviceAddress = devices.get(position);
+                    setDeviceAdress(deviceAddress);
                     //conecobd(deviceAddress);
                 }
             });
@@ -113,6 +116,10 @@ public class CarDashboard extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void setDeviceAdress(String deviceAddress) {
+        this.deviceAddress = deviceAddress;
     }
 
     public void batata(String deviceAddress)
@@ -145,6 +152,6 @@ public class CarDashboard extends AppCompatActivity {
         TextView layoutBigText = findViewById(R.id.id_big_text);
 
         Date currentTime = Calendar.getInstance().getTime();
-        layoutBigText.setText(currentTime.toString());
+        layoutBigText.setText(currentTime.toString() + "\n" + deviceAddress);
     }
 }

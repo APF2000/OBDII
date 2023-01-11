@@ -17,6 +17,13 @@
         android:theme="@style/Theme.Obd.AppBarOverlay">
 
         <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="batata2"
+            android:text="connect bluetooth" />
+
+        <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
