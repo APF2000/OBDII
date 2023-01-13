@@ -9,20 +9,24 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import com.github.pires.obd.commands.SpeedCommand;
+import com.github.pires.obd.commands.engine.RPMCommand;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.obd.databinding.ActivityCarDashboardBinding;
 
@@ -43,7 +47,9 @@ public class CarDashboard extends AppCompatActivity {
     BluetoothSocket mBTSocket = null;
     MainActivity.ReadInput mReadThread = null;
 
-    String deviceAddress = "";
+    String deviceAddress = null;
+    private int speed;
+    private int rpm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +73,7 @@ public class CarDashboard extends AppCompatActivity {
         });
     }
 
-    public void batata2(View v) {
+    public void teste2(View v) {
         /*Aqui ele lista os dispositivos pareados e que estão disponiveis*/
         try {
             List<String> deviceStrs = new ArrayList<String>();
@@ -91,6 +97,9 @@ public class CarDashboard extends AppCompatActivity {
                     deviceStrs.add(device.getName() + "\n" + device.getAddress());
                     devices.add(device.getAddress());
                 }
+            }else{
+                Toast.makeText(this, "No bluetooth device detected", Toast.LENGTH_LONG);
+                return;
             }
 
             /*Constrói uma caixa pro usuário selecionar o obd*/
@@ -116,14 +125,22 @@ public class CarDashboard extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        createConnectionToOBDReader();
     }
 
     private void setDeviceAdress(String deviceAddress) {
         this.deviceAddress = deviceAddress;
     }
 
-    public void batata(String deviceAddress)
+    public void createConnectionToOBDReader()
     {
+        if(deviceAddress == null)
+        {
+            Toast.makeText(this, "No valid bluetooth address set", Toast.LENGTH_LONG);
+            return;
+        }
+
         /*Aqui ele conecta no obd*/
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         BluetoothDevice device = btAdapter.getRemoteDevice(deviceAddress);
@@ -140,6 +157,43 @@ public class CarDashboard extends AppCompatActivity {
                 Log.w("CarDashboard", "Security exception");
                 se.printStackTrace();
             }
+        }
+    }
+
+    public void retrieveDataFromOBDReader(View v)
+    {
+        try {
+
+            /** Mais metodos da biblioteca **/
+            RPMCommand engineRpmCommand = new RPMCommand();
+            //Thread.sleep(200);
+            SpeedCommand speedCommand = new SpeedCommand();
+            //speedmax = speed;
+            //Thread.sleep(200);
+            engineRpmCommand.run(socket.getInputStream(), socket.getOutputStream());
+            //Thread.sleep(200);
+            speedCommand.run(socket.getInputStream(), socket.getOutputStream());
+            speed = Integer.parseInt(speedCommand.getCalculatedResult());
+            rpm = Integer.parseInt(engineRpmCommand.getCalculatedResult());
+
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("info", "Setting speed text!!");
+//                    TextView mSpeedTextView = findViewById(R.);
+//                    mSpeedTextView.setText("321 Km/h");
+                    //mSpeedTextView.setText(speedCommand.getCalculatedResult() + " Km/h");
+//                    mRpmTextView.setText(engineRpmCommand.getCalculatedResult() + " RPM");
+//                    //mObdInfoTextView.setText(String.valueOf(dec));
+//                    gaugespeed.setSpeed(speed,false);
+//                    gaugerpm.setValue(rpm);
+
+                }
+            });
+            //Thread.sleep(400);
+        } catch (IOException | InterruptedException e) {
+            Thread.currentThread().interrupt();
+            e.printStackTrace();
         }
     }
 
