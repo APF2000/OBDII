@@ -17,19 +17,19 @@
         android:theme="@style/Theme.Obd.AppBarOverlay">
 
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="teste2"
-                android:text="connect bluetooth" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="listBluetoothDevices"
+            android:text="select device" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickUpdateButton"
-            android:text="Button" />
+            android:onClick="createConnectionToOBDReader"
+            android:text="connect bluetooth" />
 
         <Button
             android:id="@+id/button4"
@@ -37,6 +37,13 @@
             android:layout_height="wrap_content"
             android:onClick="retrieveDataFromOBDReader"
             android:text="get velocity" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickUpdateButton"
+            android:text="Button" />
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
@@ -48,13 +55,13 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:onClick="onClickUpdateButton"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/Theme.Obd.PopupOverlay" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:onClick="onClickUpdateButton"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.Obd.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

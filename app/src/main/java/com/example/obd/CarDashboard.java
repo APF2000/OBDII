@@ -73,7 +73,13 @@ public class CarDashboard extends AppCompatActivity {
         });
     }
 
-    public void teste2(View v) {
+    public void listBluetoothDevicesAndConnectToOBD(View v) {
+        listBluetoothDevices(v);
+
+        createConnectionToOBDReader(v);
+    }
+
+    public void listBluetoothDevices(View v) {
         /*Aqui ele lista os dispositivos pareados e que estão disponiveis*/
         try {
             List<String> deviceStrs = new ArrayList<String>();
@@ -88,7 +94,7 @@ public class CarDashboard extends AppCompatActivity {
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                //return;
+                return;
             }
 
             Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
@@ -98,7 +104,9 @@ public class CarDashboard extends AppCompatActivity {
                     devices.add(device.getAddress());
                 }
             }else{
-                Toast.makeText(this, "No bluetooth device detected", Toast.LENGTH_LONG);
+                String msg = "No bluetooth device detected";
+                Toast.makeText(this, msg, Toast.LENGTH_LONG);
+                Log.w("dashobard_warning", msg);
                 return;
             }
 
@@ -126,18 +134,19 @@ public class CarDashboard extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        createConnectionToOBDReader();
     }
 
     private void setDeviceAdress(String deviceAddress) {
         this.deviceAddress = deviceAddress;
     }
 
-    public void createConnectionToOBDReader()
+    public void createConnectionToOBDReader(View v)
     {
         if(deviceAddress == null)
         {
-            Toast.makeText(this, "No valid bluetooth address set", Toast.LENGTH_LONG);
+            String msg = "No valid bluetooth address set";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG);
+            Log.w("dashobard_warning", msg);
             return;
         }
 
@@ -162,6 +171,14 @@ public class CarDashboard extends AppCompatActivity {
 
     public void retrieveDataFromOBDReader(View v)
     {
+        if(socket == null)
+        {
+            String msg = "Socket connection not set";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG);
+            Log.w("dashobard_warning", msg);
+            return;
+        }
+
         try {
 
             /** Mais metodos da biblioteca **/
